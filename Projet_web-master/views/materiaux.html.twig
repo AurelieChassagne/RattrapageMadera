@@ -1,0 +1,78 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}Materiaux{% endblock %}
+
+{% block content %}
+
+    {% for flashMessage in app.session.flashbag.get('success') %}
+    <div class="alert alert-success">
+        {{ flashMessage }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+
+    <div class="tab-content"> 
+    <div class="tab-pane fade in active adminTable" ref="materiaux">
+        {% if materiaux %}
+        <div class="table-responsive">
+            <table class="table table-hover table-condensed">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Type</th>
+                        <th>Unité</th>
+                        <th>Prix HT</th>                  
+                        <th></th>  <!-- Actions column -->
+                    </tr>
+                </thead>
+                {% for materiel in materiaux %}
+                    <tr>
+                        <td><a class="materielTtitre" href="{{   path('materiel', { 'ref': materiel.id }) }}">{{ materiel.nom }}</a></td>
+                        <td>{{ materiel.type | truncate(60) }}</td>
+                        <td>{{ materiel.unite | truncate(60) }}</td>
+                        <td>{{ materiel.prixHT | truncate(60) }}</td>
+                      
+                         {% if app.user and is_granted('ROLE_ADMIN') %}
+                            <td>
+                                <a href="{{ path('admin_materiaux_edit', { 'ref': materiel.id }) }}" class="btn btn-info btn-xs" title="Modifier"><span class="glyphicon glyphicon-edit"></span></a>
+
+                                <button type="button" class="btn btn-danger btn-xs" title="Supprimer" data-toggle="modal" data-target="#materielDialog{{ materiel.id }}"><span class="glyphicon glyphicon-remove"></span>
+                                </button>
+
+                                <div class="modal fade" id="materielDialog{{ materiel.id }}" ref="materielDialog{{ materiel.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hrefden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hrefden="true">&times;</button>
+                                                <h4 class="modal-title" ref="myModalLabel">Demande de confirmation </h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                Voulez-vous vraiment supprimer ce matériel ?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                                                <a href="{{ path('admin_materiaux_delete', { 'ref': materiel.id }) }}" class="btn btn-danger">Confirmer</a>
+                                            </div>
+                                        </div><!-- /.modal-content -->
+                                    </div><!-- /.modal-dialog -->
+                                </div><!-- /.modal -->
+                            </td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        {% else %}
+        <div class="alert alert-warning">Pas de materiaux trouvés...</div>
+        {% endif %}
+        {% if app.user and is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('admin_materiaux_add') }}"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Ajouter un matériel</button></a>
+        {% endif %}
+    </div>
+ 
+</div>
+
+
+{% endblock %}

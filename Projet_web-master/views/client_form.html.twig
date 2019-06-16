@@ -1,0 +1,107 @@
+{% extends 'layout.html.twig' %}
+{% set adminMenu = true %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{# Commentaires : formulaire de création ou de modification des clients  #}
+
+{% block content %}
+<h2 class="text-center">{{ block('title') }}</h2>
+
+
+<div class="well">
+{{ form_start(clientForm, { 'attr': {'class': 'form-horizontal'} }) }}
+    <div class="form-group">
+        {{ form_label(clientForm.nom, null, { 'label_attr':  {
+            'class': 'col-sm-4 control-label'
+        }}) }}
+        <div class="col-sm-6">
+            {{ form_errors(clientForm.nom) }}
+            {{ form_widget(clientForm.nom, { 'attr':  {
+                'class': 'form-control'
+            }}) }}
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form_label(clientForm.prenom, null, { 'label_attr':  {
+            'class': 'col-sm-4 control-label'
+        }}) }}
+        <div class="col-sm-6">
+            {{ form_errors(clientForm.prenom) }}
+            {{ form_widget(clientForm.prenom, { 'attr':  {
+                'class': 'form-control',
+                'rows': '8'
+            }}) }}
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form_label(clientForm.mail, null, { 'label_attr':  {
+            'class': 'col-sm-4 control-label'
+        }}) }}
+        <div class="col-sm-6">
+            {{ form_errors(clientForm.mail) }}
+            {{ form_widget(clientForm.mail, { 'attr':  {
+                'class': 'form-control',
+                'rows': '8'
+            }}) }}
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form_label(clientForm.telephone, null, { 'label_attr':  {
+            'class': 'col-sm-4 control-label'
+        }}) }}
+        <div class="col-sm-6">
+            {{ form_errors(clientForm.telephone) }}
+            {{ form_widget(clientForm.telephone, { 'attr':  {
+                'class': 'form-control',
+                'rows': '8'
+            }}) }}
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form_label(clientForm.adresse, null, { 'label_attr':  {
+            'class': 'col-sm-4 control-label'
+        }}) }}
+        <div class="col-sm-6">
+            {{ form_errors(clientForm.adresse) }}
+            {{ form_widget(clientForm.adresse, { 'attr':  {
+                'class': 'form-control',
+                'rows': '8'
+            }}) }}
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form_label(clientForm.codePostal, null, { 'label_attr':  {
+            'class': 'col-sm-4 control-label'
+        }}) }}
+        <div class="col-sm-6">
+            {{ form_errors(clientForm.codePostal) }}
+            {{ form_widget(clientForm.codePostal, { 'attr':  {
+                'class': 'form-control',
+                'rows': '8'
+            }}) }}
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form_label(clientForm.ville, null, { 'label_attr':  {
+            'class': 'col-sm-4 control-label'
+        }}) }}
+        <div class="col-sm-6">
+            {{ form_errors(clientForm.ville) }}
+            {{ form_widget(clientForm.ville, { 'attr':  {
+                'class': 'form-control',
+                'rows': '8'
+            }}) }}
+        </div>
+    </div>
+
+    <div class="form-group">
+
+        <div class="col-sm-offset-4 col-sm-6">
+         <a  class="btn btn-default" href="{{   path('clients') }}">Annuler</a>
+         <input type="submit" class="btn btn-primary" value="Enregistrer" />
+        </div>
+    </div>
+{{ form_end(clientForm) }}
+</div>
+{% endblock %}

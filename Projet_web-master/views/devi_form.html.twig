@@ -1,0 +1,215 @@
+{% extends 'layout.html.twig' %}
+{% set adminMenu = true %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{# Commentaires : formulaire de création ou de modification des devis  #}
+
+{% block content %}
+<h2 class="text-center">{{ block('title') }}</h2>
+
+
+<div class="well">
+{{ form_start(deviForm, { 'attr': {'class': 'form-horizontal'} }) }}
+    <div class="form-group">
+        {{ form_label(deviForm.nomDevis, null, { 'label_attr':  {
+            'class': 'col-sm-4 control-label'
+        }}) }}
+        <div class="col-sm-6">
+            {{ form_errors(deviForm.nomDevis) }}
+            {{ form_widget(deviForm.nomDevis, { 'attr':  {
+                'class': 'form-control'
+            }}) }}
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form_label(deviForm.adresseDevis, null, { 'label_attr':  {
+            'class': 'col-sm-4 control-label'
+        }}) }}
+        <div class="col-sm-6">
+            {{ form_errors(deviForm.adresseDevis) }}
+            {{ form_widget(deviForm.adresseDevis, { 'attr':  {
+                'class': 'form-control',
+                'rows': '8'
+            }}) }}
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form_label(deviForm.codePostalDevis, null, { 'label_attr':  {
+            'class': 'col-sm-4 control-label'
+        }}) }}
+        <div class="col-sm-6">
+            {{ form_errors(deviForm.codePostalDevis) }}
+            {{ form_widget(deviForm.codePostalDevis, { 'attr':  {
+                'class': 'form-control',
+                'rows': '8'
+            }}) }}
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form_label(deviForm.villeDevis, null, { 'label_attr':  {
+            'class': 'col-sm-4 control-label'
+        }}) }}
+        <div class="col-sm-6">
+            {{ form_errors(deviForm.villeDevis) }}
+            {{ form_widget(deviForm.villeDevis, { 'attr':  {
+                'class': 'form-control',
+                'rows': '8'
+            }}) }}
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form_label(deviForm.mailDevis, null, { 'label_attr':  {
+            'class': 'col-sm-4 control-label'
+        }}) }}
+        <div class="col-sm-6">
+            {{ form_errors(deviForm.mailDevis) }}
+            {{ form_widget(deviForm.mailDevis, { 'attr':  {
+                'class': 'form-control',
+                'rows': '8'
+            }}) }}
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form_label(deviForm.nomClient, null, { 'label_attr':  {
+            'class': 'col-sm-4 control-label'
+        }}) }}
+        <div class="col-sm-6">
+            {{ form_errors(deviForm.nomClient) }}
+            {{ form_widget(deviForm.nomClient, { 'attr':  {
+                'class': 'form-control',
+                'rows': '8'
+            }}) }}
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form_label(deviForm.prenomClient, null, { 'label_attr':  {
+            'class': 'col-sm-4 control-label'
+        }}) }}
+        <div class="col-sm-6">
+            {{ form_errors(deviForm.prenomClient) }}
+            {{ form_widget(deviForm.prenomClient, { 'attr':  {
+                'class': 'form-control',
+                'rows': '8'
+            }}) }}
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form_label(deviForm.adresseClient, null, { 'label_attr':  {
+            'class': 'col-sm-4 control-label'
+        }}) }}
+        <div class="col-sm-6">
+            {{ form_errors(deviForm.adresseClient) }}
+            {{ form_widget(deviForm.adresseClient, { 'attr':  {
+                'class': 'form-control',
+                'rows': '8'
+            }}) }}
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form_label(deviForm.codePostalClient, null, { 'label_attr':  {
+            'class': 'col-sm-4 control-label'
+        }}) }}
+        <div class="col-sm-6">
+            {{ form_errors(deviForm.codePostalClient) }}
+            {{ form_widget(deviForm.codePostalClient, { 'attr':  {
+                'class': 'form-control',
+                'rows': '8'
+            }}) }}
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form_label(deviForm.villeClient, null, { 'label_attr':  {
+            'class': 'col-sm-4 control-label'
+        }}) }}
+        <div class="col-sm-6">
+            {{ form_errors(deviForm.villeClient) }}
+            {{ form_widget(deviForm.villeClient, { 'attr':  {
+                'class': 'form-control',
+                'rows': '8'
+            }}) }}
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form_label(deviForm.nomMateriaux, null, { 'label_attr':  {
+            'class': 'col-sm-4 control-label'
+        }}) }}
+        <div class="col-sm-6">
+            {{ form_errors(deviForm.nomMateriaux) }}
+            {{ form_widget(deviForm.nomMateriaux, { 'attr':  {
+                'class': 'form-control',
+                'rows': '8'
+            }}) }}
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form_label(deviForm.uniteMateriaux, null, { 'label_attr':  {
+            'class': 'col-sm-4 control-label'
+        }}) }}
+        <div class="col-sm-6">
+            {{ form_errors(deviForm.uniteMateriaux) }}
+            {{ form_widget(deviForm.uniteMateriaux, { 'attr':  {
+                'class': 'form-control',
+                'rows': '8'
+            }}) }}
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form_label(deviForm.prixMateriaux, null, { 'label_attr':  {
+            'class': 'col-sm-4 control-label'
+        }}) }}
+        <div class="col-sm-6">
+            {{ form_errors(deviForm.prixMateriaux) }}
+            {{ form_widget(deviForm.prixMateriaux, { 'attr':  {
+                'class': 'form-control',
+                'rows': '8'
+            }}) }}
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form_label(deviForm.totalHTDevis, null, { 'label_attr':  {
+            'class': 'col-sm-4 control-label'
+        }}) }}
+        <div class="col-sm-6">
+            {{ form_errors(deviForm.totalHTDevis) }}
+            {{ form_widget(deviForm.totalHTDevis, { 'attr':  {
+                'class': 'form-control',
+                'rows': '8'
+            }}) }}
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form_label(deviForm.TVADevis, null, { 'label_attr':  {
+            'class': 'col-sm-4 control-label'
+        }}) }}
+        <div class="col-sm-6">
+            {{ form_errors(deviForm.TVADevis) }}
+            {{ form_widget(deviForm.TVADevis, { 'attr':  {
+                'class': 'form-control',
+                'rows': '8'
+            }}) }}
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form_label(deviForm.totalTTCDevis, null, { 'label_attr':  {
+            'class': 'col-sm-4 control-label'
+        }}) }}
+        <div class="col-sm-6">
+            {{ form_errors(deviForm.totalTTCDevis) }}
+            {{ form_widget(deviForm.totalTTCDevis, { 'attr':  {
+                'class': 'form-control',
+                'rows': '8'
+            }}) }}
+        </div>
+    </div>
+
+    <div class="form-group">
+
+        <div class="col-sm-offset-4 col-sm-6">
+         <a  class="btn btn-default" href="{{   path('devis') }}">Annuler</a>
+         <input type="submit" class="btn btn-primary" value="Enregistrer" />
+        </div>
+    </div>
+{{ form_end(deviForm) }}
+</div>
+{% endblock %}

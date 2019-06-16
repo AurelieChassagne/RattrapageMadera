@@ -1,0 +1,19 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}Matériaux{% endblock %}
+
+{% block content %}
+
+<div class="well">
+    <article>
+        <h2><a class="materielTitle" href="">{{ materiaux.nom }}</a></h2>
+        </br>
+        <p><b>Type</b> : {{ materiaux.type }}</p>
+        <p><b>Unité</b> : {{ materiaux.unite }}</p>
+        <p><b>Prix HT (€)</b> : {{ materiaux.prixHT }}</p>
+    </article>
+</div>
+
+
+<a style="float: right; margin : 1%; " class="btn btn-default" href="{{   path('materiaux') }}"><span class="glyphicon glyphicon-menu-left"></span> Retour</a>
+{% endblock %}

@@ -1,0 +1,84 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}Clients{% endblock %}
+
+{% block content %}
+
+    {% for flashMessage in app.session.flashbag.get('success') %}
+    <div class="alert alert-success">
+        {{ flashMessage }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+
+	<div class="tab-content"> 
+    <div class="tab-pane fade in active adminTable" ref="clients">
+        {% if clients %}
+        <div class="table-responsive">
+            <table class="table table-hover table-condensed">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Prenom</th>
+                        <th>Mail</th>
+                        <th>Telephone</th>
+                        <th>Adresse</th>
+                        <th>Code Postal</th>
+                        <th>Ville</th>                  
+                        <th></th>  <!-- Actions column -->
+                    </tr>
+                </thead>
+                {% for client in clients %}
+                    <tr>
+                        <td><a class="clientTitre" href="{{   path('client', { 'ref': client.id }) }}">{{ client.nom }}</a></td>
+                        <td>{{ client.prenom | truncate(60) }}</td>
+                        <td>{{ client.mail | truncate(60) }}</td>
+                        <td>{{ client.telephone | truncate(60) }}</td>
+                        <td>{{ client.adresse | truncate(60) }}</td>
+                        <td>{{ client.codePostal | truncate(60) }}</td>
+                        <td>{{ client.ville | truncate(60) }}</td>
+                      
+                         {% if app.user and is_granted('ROLE_ADMIN') %}
+                            <td>
+                                <a href="{{ path('admin_clients_edit', { 'ref': client.id }) }}" class="btn btn-info btn-xs" title="Modifier"><span class="glyphicon glyphicon-edit"></span></a>
+
+                                <button type="button" class="btn btn-danger btn-xs" title="Supprimer" data-toggle="modal" data-target="#clientDialog{{ client.id }}"><span class="glyphicon glyphicon-remove"></span>
+                                </button>
+
+                                <div class="modal fade" id="clientDialog{{ client.id }}" ref="clientDialog{{ client.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hrefden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hrefden="true">&times;</button>
+                                                <h4 class="modal-title" ref="myModalLabel">Demande de confirmation </h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                Voulez-vous vraiment supprimer ce client ?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                                                <a href="{{ path('admin_clients_delete', { 'ref': client.id }) }}" class="btn btn-danger">Confirmer</a>
+                                            </div>
+                                        </div><!-- /.modal-content -->
+                                    </div><!-- /.modal-dialog -->
+                                </div><!-- /.modal -->
+                            </td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        {% else %}
+        <div class="alert alert-warning">Pas de client trouvés...</div>
+        {% endif %}
+        {% if app.user and is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('admin_clients_add') }}"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Ajouter un Client</button></a>
+        {% endif %}
+    </div>
+ 
+</div>
+
+
+{% endblock %}

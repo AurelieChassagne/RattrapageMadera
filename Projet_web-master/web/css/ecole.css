@@ -1,0 +1,58 @@
+body { 
+    padding-top: 50px;
+    min-width: 600px;
+}
+
+.footer {
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
+    text-align: center;
+}
+
+.articleTitle:hover, .articleTitle:focus {
+    text-decoration: none;
+}
+
+.adminTable {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.container {
+
+    width: auto;
+}
+
+.col-md-3 {
+    width: 15%;
+}
+
+.menuGauche {
+    min-width: 140px !important;
+}
+    
+#tableChapitre td {
+    white-space: unset !important;
+}
+
+#tableChapitre td:last-child,
+#tableEleves td:last-child,
+#tableNiveauClasses td:last-child,
+#tableNiveauChapitres td:last-child{
+    width: 65px !important;
+    text-align: right;
+}
+
+#tableChapitre td:first-child,
+#tableEleves td:first-child,
+#tableNiveauClasses td:first-child,
+#tableNiveauChapitres td:first-child{
+    text-align: left !important;
+}
+
+@media (max-width:768px) {
+    .largeurMiniBtn {
+        margin: 5px 15px !important;
+        width: calc(100% - 30px);
+    }
+}
